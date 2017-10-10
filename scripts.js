@@ -10,7 +10,9 @@ const Blog = Backbone.Model.extend({
 
 // Backbone Collection
 
-const Blogs = Backbone.Collection.extend({});
+const Blogs = Backbone.Collection.extend({
+  model: Blog,
+});
 
 // Instantiate two Blogs
 const blog1 = new Blog({
@@ -32,7 +34,6 @@ const blogs = new Blogs([blog1, blog2]);
 // Backbone view for one blog
 
 const BlogView = Backbone.View.extend({
-  model: new Blog(),
   tagName: 'tr',
   initialize() {
     this.template = _.template($('.blogs-list-template').html());
@@ -46,22 +47,25 @@ const BlogView = Backbone.View.extend({
 // Bckbone view for all blogs
 
 const BlogsView = Backbone.View.extend({
-  model: blogs,
-  el: $('.blogs-list'),
   initialize() {
-    this.model.on('add', this.render, this);
+    this.listenTo(this.collection, 'add', this.render);
   },
   render() {
-    const self = this;
     this.$el.html('');
-    _.each(this.model.toArray(), (blog) => {
-      self.$el.append((new BlogView({ model: blog })).render().$el);
+    this.collection.each((blog) => {
+      const blogView = new BlogView({ model: blog });
+      blogView.render();
+      this.$el.append(blogView.$el);
     });
     return this;
   }
 });
 
-const blogsView = new BlogsView();
+const blogsView = new BlogsView({
+  collection: blogs,
+  el: $('.blogs-list'),
+});
+blogsView.render();
 
 $(document).ready(() => {
   $('.add-blog').on('click', () => {
