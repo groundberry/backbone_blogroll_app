@@ -15,21 +15,21 @@ const Blogs = Backbone.Collection.extend({
 });
 
 // Instantiate two Blogs
-const blog1 = new Blog({
-  author: 'Blanca',
-  title: 'Blanca\'s Blog',
-  url: 'http://blancasblog.com',
-});
-
-const blog2 = new Blog({
-  author: 'John',
-  title: 'John\'s Blog',
-  url: 'http://johnsblog.com',
-});
+// const blog1 = new Blog({
+//   author: 'Blanca',
+//   title: 'Blanca\'s Blog',
+//   url: 'http://blancasblog.com',
+// });
+//
+// const blog2 = new Blog({
+//   author: 'John',
+//   title: 'John\'s Blog',
+//   url: 'http://johnsblog.com',
+// });
 
 // Instantiate a Collection
 
-const blogs = new Blogs([blog1, blog2]);
+const blogs = new Blogs();
 
 // Backbone view for one blog
 
@@ -74,6 +74,9 @@ $(document).ready(() => {
       title: $('.title-input').val(),
       url: $('.url-input').val(),
     });
+    $('.author-input').val('');
+    $('.title-input').val('');
+    $('.url-input').val('');
     blogs.add(blog);
   });
 });
