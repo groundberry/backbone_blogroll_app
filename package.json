@@ -1,0 +1,22 @@
+{
+  "name": "backbone_tutorial_blogroll_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/groundberry/backbone_blogroll_app.git"
+  },
+  "author": "groundberry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/groundberry/backbone_blogroll_app/issues"
+  },
+  "homepage": "https://github.com/groundberry/backbone_blogroll_app#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
